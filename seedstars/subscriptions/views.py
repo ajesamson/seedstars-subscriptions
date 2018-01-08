@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .forms import SubscriptionForm
 from .models import Subscription
@@ -11,7 +12,11 @@ def home(request):
 
 
 def listings(request):
-    subscriptions = Subscription.objects
+    subscriptions = Subscription.objects.all()
+    paginator = Paginator(subscriptions, 25)
+
+    page = request.GET.get('page')
+    subscriptions = paginator.get_page(page)
     return render(request, 'subscriptions/list.html', {'subscriptions': subscriptions})
 
 

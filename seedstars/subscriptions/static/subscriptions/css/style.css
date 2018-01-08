@@ -1,0 +1,16 @@
+.main {
+    background: url(../img/dose.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height:100vh;
+}
+
+.page-header {
+    background-color: #5b80b2
+}
+
+.home {
+    color: #5b80b2;
+}

@@ -1,5 +1,64 @@
-<h1>Listing page</h1>
+{% extends "./base.html" %}
 
-{% for subscription in subscriptions.all %}
-    {{ subscription.name }}   {{ subscription.email }} <br>
-{% endfor %}
+{% block title %}Subscription Listing{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="container">
+            <p class="h3 p-3 text-white text-centered">Subscription Listing</p>
+
+        </div>
+
+    </div>
+    <div class="container mt-5">
+
+        {% if subscriptions %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for subscription in subscriptions %}
+
+                    <tr>
+                      <td>{{ subscription.id }}</td>
+                      <td>{{ subscription.name }}</td>
+                      <td>{{ subscription.email }}</td>
+                    </tr>
+                {% endfor %}
+
+               </tbody>
+            </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if subscriptions.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ subscriptions.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ subscriptions.number }} of {{ subscriptions.paginator.num_pages }}.
+                    </span>
+
+                    {% if subscriptions.has_next %}
+                        <a href="?page={{ subscriptions.next_page_number }}">next</a>
+                        <a href="?page={{ subscriptions.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+              No record exist! <a href="{%  url 'add' %}">Click here to subscribe.</a>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

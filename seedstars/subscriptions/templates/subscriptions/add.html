@@ -1,14 +1,47 @@
-<h1>Add page</h1>
+{% extends "./base.html" %}
 
-<form method="post" action="{%  url 'add' %}">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="{{ form.name.id_for_label }}">Name: </label>
-        {{ form.name }}
-      </div>
-    <div class="form-group">
-        <label for="{{ form.email.id_for_label }}">Email: </label>
-        {{ form.email }}
-      </div>
-    <input type="submit" value="Submit"  class="btn btn-primary"/>
-</form>
+{% block title %}Add Subscription{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="container">
+            <p class="h3 p-3 text-white text-centered">New Subscription</p>
+
+        </div>
+
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                  <h5 class="card-header">Subscription</h5>
+                  <div class="card-body">
+                      {% if form.name.errors or form.email.errors %}
+                      <div class="alert alert-warning" role="alert">
+                          The following errors occurred
+                          <p>{{ form.name.errors }}</p> 
+                          <p>{{ form.email.errors }}</p>
+                        </div>
+                      {% endif %}
+                    <form method="post" action="{%  url 'add' %}" class="form-vertical">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Name: </label>
+                            {{ form.name }}
+                            
+                          </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email: </label>
+                            {{ form.email }}
+                            
+                            
+                          </div>
+                        <input type="submit" value="Save"  class="btn btn-primary"/>
+                    </form>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
