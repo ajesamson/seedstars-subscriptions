@@ -15,13 +15,17 @@ A simple Django application which stores names and email addresses in a database
 After cloning the repo and changing directory to the project, follow the following steps to run the application
 
 * Run Migration for db setup
-```python python3 seedstars/manage.py migrate```
+    ```
+        python3 seedstars/manage.py migrate
+    ```
 
 * Run the application
-```python python3 seedstars/manage.py runserver```
+    ```
+        python3 seedstars/manage.py runserver
+    ```
 
 * Go to the url generated on your terminal which should be similar to this
-```http://127.0.0.1:8000`
+    ```http://127.0.0.1:8000```
 
 * To close the application press `ctrl + c` from your terminal
 
