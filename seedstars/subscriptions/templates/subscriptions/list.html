@@ -1,0 +1,5 @@
+<h1>Listing page</h1>
+
+{% for subscription in subscriptions.all %}
+    {{ subscription.name }}   {{ subscription.email }} <br>
+{% endfor %}
